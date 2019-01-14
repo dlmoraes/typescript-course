@@ -6,8 +6,8 @@ class Routes {
     }
 
     getRoutes(app: Application): void {
-        app.route('/').get((req: Request, res: Response) => res.send('Hello World!'))
-        app.route('/ola/:nome').get((req: Request, res: Response) => res.send(`Hello ${req.params.nome}`))
+        app.route('/').get((req: Request, res: Response) => res.send('Hello, world!'))
+        app.route('/ola/:nome').get((req: Request, res: Response) => res.send(`Hello, ${req.params.nome}`))
     }
 }
 
