@@ -9,7 +9,7 @@ export default function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                notEmpyt: true
+                notEmpty: true
             }
         },
         email: {
