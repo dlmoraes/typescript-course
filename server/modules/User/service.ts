@@ -41,7 +41,9 @@ class User implements IUser {
             where: {id},
             fields: [
                 'name', 'email', 'password'
-            ]
+            ],
+            hooks: true,
+            individualHooks: true
         })
     }
     

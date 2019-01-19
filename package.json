@@ -19,6 +19,7 @@
   "author": "Diego Moraes",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.3",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
@@ -33,6 +34,7 @@
     "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/bluebird": "^3.5.25",
     "@types/body-parser": "^1.17.0",
     "@types/chai": "^4.1.7",
