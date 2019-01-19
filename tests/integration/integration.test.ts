@@ -79,6 +79,8 @@ describe('Testes de Integração', () => {
         it('Deve retornar um Json com todos os usuários', done => {
             request(app)
                 .get('/api/users/all')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `JWT ${token}`)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK)
                     expect(res.body.payload).to.be.an('array')
@@ -93,6 +95,8 @@ describe('Testes de Integração', () => {
         it('Deve retornar um Json com apenas um usuário', done => {
             request(app)
                 .get(`/api/users/${1}`)
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `JWT ${token}`)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK)
                     expect(res.body.payload.id).to.equal(userDefault.id)
@@ -114,6 +118,8 @@ describe('Testes de Integração', () => {
             }
             request(app)
                 .post('/api/users/create')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', `JWT ${token}`)
                 .send(user)
                 .end((error, res) => {
                     expect(res.status).to.equal(HTTPStatus.OK)
@@ -133,6 +139,8 @@ describe('Testes de Integração', () => {
           };
           request(app)
             .put(`/api/users/${userTest.id}/update`)
+            .set('Content-Type', 'application/json')
+            .set('Authorization', `JWT ${token}`)
             .send(user)
             .end((error, res) => {
               expect(res.status).to.equal(HTTPStatus.OK);
@@ -145,6 +153,8 @@ describe('Testes de Integração', () => {
         it('Deve remover um usário', done => {
           request(app)
             .del(`/api/users/${userTest.id}/destroy`)
+            .set('Content-Type', 'application/json')
+            .set('Authorization', `JWT ${token}`)
             .end((error, res) => {
               expect(res.status).to.equal(HTTPStatus.OK);
               done(error)
