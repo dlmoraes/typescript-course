@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(module.filename);
 const config = require('../config/env/config')();
 const env = config.env || 'development';
-const db = {};
+let db: any = {};
 
 let sequelize;
 if (config.dbURL) {
