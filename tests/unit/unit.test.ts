@@ -1,11 +1,36 @@
 import { testDouble, expect } from './config/helpers'
 import User from '../../server/modules/User/service'
 
+const model = require('../../server/models')
+
+let email
+let _id
+
+const defaultUser = {
+    id: 1,
+    name: 'Default User',
+    email: 'defaultuser@email.com',
+    password: '1234'
+}
+
+beforeEach((done) => {
+    model.User.destroy({
+        where: {}
+    })
+    .then(() => {
+        model.User.create(defaultUser)
+            .then(() => {
+                console.log('Default User created')
+                done()
+            })
+    })
+})
+
 describe('Testes Unitários do Controller', () => {
     describe('Método Create', () => {
         it('Deve criar um novo Usuário', () => {
             const novoUsuario = {
-                id: 1,
+                id: 2,
                 name: 'Novo usuário',
                 email: 'novousuario@email.com',
                 password: '1234'
@@ -25,7 +50,7 @@ describe('Testes Unitários do Controller', () => {
                 name: 'Nome Atualizado',
                 email: 'atualizado@email.com'
             }
-            return User.update(1, usuarioAtualizado).then(data => {
+            return User.update(defaultUser.id, usuarioAtualizado).then(data => {
                 expect(data[0]).to.be.equal(1)
             })
         })
@@ -44,26 +69,25 @@ describe('Testes Unitários do Controller', () => {
 
     describe('Método getById', () => {
         it('Retornar um usuário de acordo com o ID passado', () => {
-            return User.getById(1).then(data => {
+            return User.getById(defaultUser.id).then(data => {
                 expect(data).to.have.all.keys(
                     ['email', 'id', 'name', 'password']
                 )
-                expect(data.id).to.be.equal(1)
             })
         })
     })
 
     describe('Método getByEmail', () => {
         it('Retornar um usuário de acordo com o E-mail passado', () => {
-            return User.getByEmail('atualizado@email.com').then(data => {
-                expect(data.email).to.be.equal('atualizado@email.com')
+            return User.getByEmail(defaultUser.email).then(data => {
+                expect(data.email).to.be.equal(defaultUser.email)
             })
         })
     })
 
     describe('Método Delete', () => {
         it('Deve deletar um Usuário', () => {
-            return User.delete(1).then(data => {
+            return User.delete(defaultUser.id).then(data => {
                 expect(data).to.be.equal(1)
             })
         })
