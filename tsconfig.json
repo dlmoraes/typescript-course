@@ -2,7 +2,9 @@
     "compilerOptions": {
         "target": "es6",
         "module": "commonjs",
-        "outDir": "build",
+        "outDir": "dist",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "typeRoots": [
             "./node_modules/@types"
         ],
@@ -17,7 +19,7 @@
         "./tests/*.ts"
     ],
     "exclude": [
-        "node_modules"
+        "./node_modules"
     ],
     "buildOnSave": true,
     "compileOnSave": true
