@@ -16,4 +16,10 @@ gulp.task('compile', function() {
         .js.pipe(gulp.dest('dist'))
 })
 
-gulp.task('default', gulp.series('clean', 'compile'))
+gulp.task('copy-opts', function() {
+    return gulp.src('tests/unit/config/mocha.opts')
+        .pipe(gulp.dest('dist/tests/unit/config'))
+        .pipe(gulp.dest('dist/tests/integration/config'))
+})
+
+gulp.task('default', gulp.series('clean', 'compile', 'copy-opts'))
